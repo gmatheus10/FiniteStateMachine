@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Agent.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="Main" type="Node"]
+
+[node name="GoldMine" type="Node2D" parent="."]
+position = Vector2( 86, 50 )
+
+[node name="Sprite" type="Sprite" parent="GoldMine"]
+modulate = Color( 1, 0.960784, 0, 1 )
+position = Vector2( 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="Home" type="Node2D" parent="."]
+position = Vector2( 88, 494 )
+
+[node name="Sprite" type="Sprite" parent="Home"]
+modulate = Color( 0.713726, 0.494118, 0.635294, 1 )
+texture = ExtResource( 2 )
+
+[node name="Bar" type="Node2D" parent="."]
+position = Vector2( 583, 41 )
+
+[node name="Sprite" type="Sprite" parent="Bar"]
+modulate = Color( 0.862745, 0.211765, 0.121569, 1 )
+texture = ExtResource( 2 )
+
+[node name="Bank" type="Node2D" parent="."]
+position = Vector2( 588, 495 )
+
+[node name="Sprite" type="Sprite" parent="Bank"]
+modulate = Color( 0.121569, 0.862745, 0.133333, 1 )
+texture = ExtResource( 2 )
+
+[node name="Agent" parent="." instance=ExtResource( 1 )]
+position = Vector2( 317, 271 )
