@@ -2,40 +2,31 @@ using Godot;
 using System.Collections.Generic;
 public class StateMachine : Node2D
 {
-  //Transition is unique, State is not 
-  KeyValuePair<Transition, State> TransitionStatePair = new KeyValuePair<Transition, State>();
-
-  class Transitions : List<KeyValuePair<Transition, State>> { } //each state has a transition object assotiated
-  Dictionary<State, Transitions> TransitionMap = new Dictionary<State, Transitions>();
-  private State currentState;
-  public override void _Ready()
-  {
-  }
-  private void Update(float delta)
-  {
-    //find the set of transitions for the current state
-    Transitions it = TransitionMap[currentState];
-    //loop through every transition for this state
-    foreach (var transPair in it)
+    Agent Agent;
+    State currentState;
+    State lastState;
+    State GlobalState;
+    public void Update(float delta)
     {
-      if (transPair.Key.ToTransition())
-      {
-        SetState(transPair.Value);
-        break;
-      }
+        ExecuteState(GlobalState, delta);
+        ExecuteState(currentState, delta);
     }
-    if (currentState != null)
+    private void ExecuteState(State state, float delta)
     {
-      currentState.Update(delta);
+        if (state != null)
+        {
+            state.Execute(delta);
+        }
     }
-  }
-  private void SetState(State state)
-  {
-
-  }
-  //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-  //  public override void _Process(float delta)
-  //  {
-  //      
-  //  }
+    public void ChangeState(State state)
+    {
+        lastState = currentState;
+        currentState.OnExit();
+        currentState = state;
+        currentState.OnEnter();
+    }
+    public void RevertState()
+    {
+        ChangeState(lastState);
+    }
 }

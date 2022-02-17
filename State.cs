@@ -2,10 +2,11 @@ using Godot;
 using System;
 public abstract class State
 {
-    Node2D Agent;
-    protected virtual void OnEnter() { }
-    protected virtual void OnExit() { }
-    public virtual void Update(float delta) { }
+    //notify when a transition should occur
+    Agent Agent;
+    public virtual void OnEnter() { }
+    public virtual void OnExit() { }
+    public virtual void Execute(float delta) { }
 
 
 }
