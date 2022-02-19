@@ -1,26 +1,18 @@
 using Godot;
 
-public class State_DrinkInBar : State
+public class State_DrinkInBar : Miner_State_Base
 {
-    Agent_Miner miner;
-    Node2D bar;
-    public State_DrinkInBar(Agent miner)
+  public State_DrinkInBar(Agent_Miner miner, Node2D building) : base(miner, building) { }
+  public override void Execute(float delta)
+  {
+    if (!IsInBuilding())
     {
-        this.miner = (Agent_Miner)miner;
+      MoveMiner(delta);
     }
-    public override void OnEnter()
+    else
     {
-        miner.PositionToMove = bar.GlobalPosition;
+      miner.ThirstLevel = 0;
+      miner.MoneyInBank -= 15;
     }
-    public override void Execute(float delta)
-    {
-        if (miner.ThirstLevel > 0)
-        {
-            miner.ThirstLevel--;
-        }
-        else
-        {
-            miner.ThirstLevel = 0;
-        }
-    }
+  }
 }

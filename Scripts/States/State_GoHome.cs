@@ -1,25 +1,23 @@
 using Godot;
-public class State_GoHome : State
+public class State_GoHome : Miner_State_Base
 {
-    Agent_Miner miner;
-    Node2D home;
-    public State_GoHome(Agent Agent)
+  public State_GoHome(Agent_Miner miner, Node2D building) : base(miner, building) { }
+  public override void Execute(float delta)
+  {
+    if (!IsInBuilding())
     {
-        this.miner = (Agent_Miner)Agent;
+      MoveMiner(delta);
     }
-    public override void OnEnter()
+    else
     {
-        miner.PositionToMove = home.GlobalPosition;
+      if (miner.FatigueLevel > 0)
+      {
+        miner.FatigueLevel--;
+      }
+      else
+      {
+        miner.FatigueLevel = 0;
+      }
     }
-    public override void Execute(float delta)
-    {
-        if (miner.FatigueLevel > 0)
-        {
-            miner.FatigueLevel--;
-        }
-        else
-        {
-            miner.FatigueLevel = 0;
-        }
-    }
+  }
 }

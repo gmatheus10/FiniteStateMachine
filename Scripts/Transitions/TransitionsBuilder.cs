@@ -1,11 +1,8 @@
 using System.Collections.Generic;
-public class TransitionsBuilder
+public static class TransitionsBuilder
 {
-    public Transitions t = new Transitions();
-    public void BuildPair(Edge TransitionTo, State NextState)
-    {
-        //transition->next state
-        t.Add(new KeyValuePair<Edge, State>(TransitionTo, NextState));
-    }
-
+  public static void BuildPair(ref Transitions transitions, Edge TransitionTo, State NextState)
+  {
+    transitions.Add(new KeyValuePair<Edge, State>(TransitionTo, NextState));
+  }
 }

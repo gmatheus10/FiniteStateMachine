@@ -1,13 +1,17 @@
 using Godot;
-class State_MineGold : State
+class State_MineGold : Miner_State_Base
 {
-    Agent_Miner miner;
-    public State_MineGold(Agent agent)
+  public State_MineGold(Agent_Miner miner, Node2D building) : base(miner, building) { }
+
+  public override void Execute(float delta)
+  {
+    if (!IsInBuilding())
     {
-        miner = (Agent_Miner)agent;
+      MoveMiner(delta);
     }
-    public override void Execute(float delta)
+    else
     {
-        miner.GoldCarried++;
+      miner.GoldCarried++;
     }
+  }
 }
