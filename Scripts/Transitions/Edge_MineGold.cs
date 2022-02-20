@@ -8,7 +8,7 @@ class Edge_MineGold : Edge
   }
   public override bool ToTransition()
   {
-    if (miner.GoldCarried < miner.GoldLimit)
+    if (miner.GoldCarried < miner.BagLimit)
     {
       return true;
     }

@@ -8,11 +8,11 @@ public class StateMachine : Node2D
   State GlobalState;
   Transitions Transitions;
   Dictionary<State, Transitions> TransitionMap; // the state here is the current
-  public StateMachine(Agent Agent, Dictionary<State, Transitions> TransitionMap, State GlobalState)
+  public StateMachine(Agent Agent, Dictionary<State, Transitions> TransitionMap, State currentState)
   {
     this.Agent = Agent;
     this.TransitionMap = TransitionMap;
-    this.GlobalState = GlobalState;
+    this.currentState = currentState;
   }
   public override void _Process(float delta)
   {

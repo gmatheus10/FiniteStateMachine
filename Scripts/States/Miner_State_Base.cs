@@ -10,7 +10,7 @@ public abstract class Miner_State_Base : State
   }
   public bool IsInBuilding()
   {
-    if (miner.GlobalPosition.DistanceTo(miner.PositionToMove) > 0)
+    if (miner.Position.DistanceTo(building.Position) <= 0)
     {
       return true;
     }
@@ -23,7 +23,11 @@ public abstract class Miner_State_Base : State
   {
     if (building != null)
     {
-      miner.GlobalPosition.MoveToward(building.GlobalPosition, delta * miner.Speed);
+      miner.Position = miner.Position.MoveToward(building.Position, delta * miner.Speed);
+      if (miner.Position.DistanceTo(building.Position) <= 0)
+      {
+        miner.Position = building.Position;
+      }
     }
   }
 }
