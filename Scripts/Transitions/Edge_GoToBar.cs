@@ -9,7 +9,10 @@ public class Edge_GoToBar : Edge
     {
         if (miner.ThirstLevel >= miner.ThirstLimit)
         {
-            return true;
+            if (miner.GoldCarried == 0)
+            {
+                return true;
+            }
         }
         return false;
     }

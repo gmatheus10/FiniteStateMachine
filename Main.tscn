@@ -36,8 +36,8 @@ texture = ExtResource( 2 )
 
 [node name="Agent" parent="." instance=ExtResource( 1 )]
 position = Vector2( 317, 271 )
-Speed = 300
+Speed = 500
 ThirstLimit = 200
-FatigueLimit = 300
+FatigueLimit = 250
 BagLimit = 50
 GoldLimit = 150
