@@ -40,29 +40,46 @@ public class Agent_Miner : Agent
     Edge_DepositGold e_deposit = new Edge_DepositGold(this);
     Edge_GoToBar e_drink = new Edge_GoToBar(this);
     Edge_GoHome e_home = new Edge_GoHome(this);
+    ///////////////////////////////////////////////////////////////////////////
 
     Transitions T_mine = new Transitions();
+
+    //Mine->Deposit:
     TransitionsBuilder.BuildPair(ref T_mine, e_deposit, s_deposit);
+    //Mine->Drink:
     TransitionsBuilder.BuildPair(ref T_mine, e_drink, s_drink);
 
     TransitionMap.Add(s_mine, T_mine);
-    //
+    ///////////////////////////////////////////////////////////////////////////
+
     Transitions T_drink = new Transitions();
+
+    //Drink->Mine:
     TransitionsBuilder.BuildPair(ref T_drink, e_mine, s_mine);
 
     TransitionMap.Add(s_drink, T_drink);
-    //
+    ///////////////////////////////////////////////////////////////////////////
+
     Transitions T_home = new Transitions();
+
+    //Home->Mine:
     TransitionsBuilder.BuildPair(ref T_home, e_mine, s_mine);
 
     TransitionMap.Add(s_home, T_home);
-    //
+    ///////////////////////////////////////////////////////////////////////////
+
     Transitions T_deposit = new Transitions();
+
+    //Deposit->Mine:
     TransitionsBuilder.BuildPair(ref T_deposit, e_mine, s_mine);
+    //Deposit->Home:
     TransitionsBuilder.BuildPair(ref T_deposit, e_home, s_home);
+    //Deposit->Drink:
+    TransitionsBuilder.BuildPair(ref T_deposit, e_drink, s_drink);
 
     TransitionMap.Add(s_deposit, T_deposit);
-    //
+    ///////////////////////////////////////////////////////////////////////////
+
     baseState = s_mine;
     return TransitionMap;
   }

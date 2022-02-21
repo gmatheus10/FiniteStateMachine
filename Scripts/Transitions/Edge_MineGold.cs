@@ -11,6 +11,7 @@ class Edge_MineGold : Edge
     if (miner.GoldCarried < miner.BagLimit)
     {
       return true;
+
     }
     return false;
   }

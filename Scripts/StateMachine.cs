@@ -35,6 +35,7 @@ public class StateMachine : Node2D
         {
           //it transition to the first state that returns true. So it has a priority of transitions.
           ChangeState(transPair.Value);
+          GD.Print(transPair.Value);
           break;
         }
       }

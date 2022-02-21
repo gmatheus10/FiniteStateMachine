@@ -4,7 +4,7 @@ public class State_DepositGold : Miner_State_Base
   public State_DepositGold(Agent_Miner miner, Node2D building) : base(miner, building) { }
   public override void OnEnter()
   {
-    GD.Print("GOING TO DEPOSIT");
+    //GD.Print("GOING TO DEPOSIT");
   }
   public override void Execute(float delta)
   {
@@ -14,8 +14,9 @@ public class State_DepositGold : Miner_State_Base
     }
     else
     {
-      miner.MoneyInBank = miner.GoldCarried;
+      miner.MoneyInBank += miner.GoldCarried;
       miner.GoldCarried = 0;
+      GD.Print($"Gold Limit: {miner.MoneyInBank}");
     }
   }
 }

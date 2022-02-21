@@ -12,6 +12,7 @@ public class Edge_GoHome : Edge
     {
       return true;
     }
+
     return false;
   }
 }

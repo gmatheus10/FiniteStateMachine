@@ -7,5 +7,4 @@ public abstract class State
   public virtual void OnExit() { }
   public virtual void Execute(float delta) { }
 
-
 }

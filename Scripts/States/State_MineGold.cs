@@ -4,7 +4,7 @@ class State_MineGold : Miner_State_Base
   public State_MineGold(Agent_Miner miner, Node2D building) : base(miner, building) { }
   public override void OnEnter()
   {
-    GD.Print("GOING TO MINE");
+    //GD.Print("GOING TO MINE");
   }
 
   public override void Execute(float delta)
