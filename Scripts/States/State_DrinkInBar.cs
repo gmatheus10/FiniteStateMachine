@@ -2,22 +2,22 @@ using Godot;
 
 public class State_DrinkInBar : Miner_State_Base
 {
-  public State_DrinkInBar(Agent_Miner miner, Node2D building) : base(miner, building) { }
-  public override void OnEnter()
-  {
-    //GD.Print("GOING TO DRINK");
-  }
-  public override void Execute(float delta)
-  {
-    if (!IsInBuilding())
+    public State_DrinkInBar(Agent_Miner miner, Node2D building) : base(miner, building) { }
+    public override void OnEnter()
     {
-      MoveMiner(delta);
+        //GD.Print("GOING TO DRINK");
     }
-    else
+    public override void Execute(float delta)
     {
-      miner.ThirstLevel = 0;
-      miner.MoneyInBank -= 15;
-      GD.Print($"Thirst: {miner.ThirstLevel}");
+        if (!IsInBuilding())
+        {
+            MoveMiner(delta);
+        }
+        else
+        {
+            miner.ThirstLevel = 0;
+            miner.MoneyInBank /= 2;
+            if (miner.ThirstLevel == 0) { this.StateCompleted = true; } else { this.StateCompleted = false; }
+        }
     }
-  }
 }

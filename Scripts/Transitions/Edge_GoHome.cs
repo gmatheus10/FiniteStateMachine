@@ -1,31 +1,18 @@
 using Godot;
-public class Edge_GoHome : Edge
+public class Edge_GoHome : Edge_Miner_Base
 {
-  Agent_Miner miner;
-  public Edge_GoHome(Agent Agent)
-  {
-    this.miner = (Agent_Miner)Agent;
-  }
-  public override bool ToTransition()
-  {
-    if (miner.FatigueLevel >= miner.FatigueLimit)
+    public Edge_GoHome(Agent agent) : base(agent) { }
+    public override bool ToTransition(State CurrentState)
     {
-      if (miner.MoneyInBank >= miner.GoldLimit)
-      {
-        if (miner.GoldCarried <= 0)
+
+        if (!CurrentState.StateCompleted)
         {
-          if (miner.ThirstLevel < miner.ThirstLimit)
-          {
+            return false;
+        }
+        if (miner.FatigueLevel >= miner.FatigueLimit)
+        {
             return true;
-          }
         }
-        else
-        {
-          return false;
-        }
-      }
-      return true;
+        return false;
     }
-    return false;
-  }
 }

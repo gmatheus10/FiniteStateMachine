@@ -1,18 +1,17 @@
-public class Edge_GoToBar : Edge
+using Godot;
+public class Edge_GoToBar : Edge_Miner_Base
 {
-    Agent_Miner miner;
-    public Edge_GoToBar(Agent Agent)
+    public Edge_GoToBar(Agent agent) : base(agent) { }
+    public override bool ToTransition(State CurrentState)
     {
-        miner = (Agent_Miner)Agent;
-    }
-    public override bool ToTransition()
-    {
+
+        if (!CurrentState.StateCompleted)
+        {
+            return false;
+        }
         if (miner.ThirstLevel >= miner.ThirstLimit)
         {
-            if (miner.GoldCarried == 0)
-            {
-                return true;
-            }
+            return true;
         }
         return false;
     }

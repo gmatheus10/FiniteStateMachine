@@ -1,18 +1,17 @@
 using Godot;
-public class Edge_DepositGold : Edge
+public class Edge_DepositGold : Edge_Miner_Base
 {
-  Agent_Miner miner;
-  public Edge_DepositGold(Agent Agent)
-  {
-    miner = (Agent_Miner)Agent;
-  }
-  public override bool ToTransition()
-  {
-    if (miner.GoldCarried >= miner.BagLimit)
+    public Edge_DepositGold(Agent agent) : base(agent) { }
+    public override bool ToTransition(State CurrentState)
     {
-
-      return true;
+        if (!CurrentState.StateCompleted)
+        {
+            return false;
+        }
+        if (miner.GoldCarried >= miner.BagLimit)
+        {
+            return true;
+        }
+        return false;
     }
-    return false;
-  }
 }
