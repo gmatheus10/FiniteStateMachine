@@ -56,7 +56,7 @@ public class Agent_Miner : Agent
 
         //Drink->Mine:
         TransitionsBuilder.BuildPair(ref T_drink, e_mine, s_mine);
-        TransitionsBuilder.BuildPair(ref T_drink, e_deposit, s_deposit);
+
 
         TransitionMap.Add(s_drink, T_drink);
         ///////////////////////////////////////////////////////////////////////////
@@ -65,7 +65,6 @@ public class Agent_Miner : Agent
 
         //Home->Mine:
         TransitionsBuilder.BuildPair(ref T_home, e_mine, s_mine);
-        TransitionsBuilder.BuildPair(ref T_home, e_deposit, s_deposit);
 
         TransitionMap.Add(s_home, T_home);
         ///////////////////////////////////////////////////////////////////////////
@@ -76,8 +75,6 @@ public class Agent_Miner : Agent
         TransitionsBuilder.BuildPair(ref T_deposit, e_mine, s_mine);
         //Deposit->Home:
         TransitionsBuilder.BuildPair(ref T_deposit, e_home, s_home);
-        //Deposit->Drink:
-        TransitionsBuilder.BuildPair(ref T_deposit, e_drink, s_drink);
 
         TransitionMap.Add(s_deposit, T_deposit);
         ///////////////////////////////////////////////////////////////////////////
