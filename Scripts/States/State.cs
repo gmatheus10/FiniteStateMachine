@@ -10,6 +10,20 @@ public abstract class State
   {
     return this.GetType().ToString();
   }
-  public bool StateCompleted;
+  public virtual void TransitionTo(bool Condition, string NextState)
+  {
+    if (Condition)
+    {
+      State next = StateMachine.States.Find((State s) => s.ToString() == NextState);
+      if (next == null)
+      {
+        throw new Exception("Next state can't be null");
+      }
+      else
+      {
+        StateMachine.ChangeState(next);
+      }
+    }
+  }
 
 }
